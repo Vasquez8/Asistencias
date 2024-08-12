@@ -28,7 +28,7 @@ public class GrupoController {
     public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         //Cualquier nombre currentPage
         int currentPage = page.orElse(1) - 1;
-        int pageSize = size.orElse(10);
+        int pageSize = size.orElse(5);
 
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         Page<Grupo> grupos = grupoServices.BuscarTodosPaginados(pageable);
