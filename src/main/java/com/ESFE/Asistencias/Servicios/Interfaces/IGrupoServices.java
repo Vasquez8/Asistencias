@@ -12,6 +12,6 @@ public interface IGrupoServices {
     Page<Grupo> BuscarTodosPaginados(Pageable pageable);
     List<Grupo> ObtenerTodos();
     Optional<Grupo> BuscarporId(Integer id);
-    Grupo CreaOeditar(Grupo grupo);
+    Grupo CrearOEditar(Grupo grupo);
     void EliminarPorId(Integer id);
 }

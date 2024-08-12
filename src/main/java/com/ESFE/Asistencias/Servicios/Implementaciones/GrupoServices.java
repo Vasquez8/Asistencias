@@ -33,7 +33,7 @@ public class GrupoServices implements IGrupoServices {
     }
 
     @Override
-    public Grupo CreaOeditar(Grupo grupo) {
+    public Grupo CrearOEditar(Grupo grupo) {
         return grupoRepository.save(grupo);
     }
 
