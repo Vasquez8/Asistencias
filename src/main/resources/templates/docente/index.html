@@ -21,28 +21,34 @@
             })
         </script>
     </div>
-    <h1 class="text-center">Listado de grupos</h1>
+    <h1 class="text-center">Listado de docentes</h1>
 
-    <a th:href="@{/Grupos/create}" class="btn btn-primary my-3">Crear nuevo grupo</a>
+    <a th:href="@{/Docentes/create}" class="btn btn-primary my-3">Crear nuevo docente</a>
 
     <table class="table table-striped">
         <thead class="table-dark">
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Escuela</th>
+            <th>Acciones</th>
+        </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${grupos}">
+        <tr th:each="item : ${docentes}">
             <td th:text="${item.id}"></td>
             <td th:text="${item.nombre}"></td>
-            <td th:text="${item.descripcion}"></td>
+            <td th:text="${item.apellido}"></td>
+            <td th:text="${item.email}"></td>
+            <td th:text="${item.telefono}"></td>
+            <td th:text="${item.escuela}"></td>
             <td class="d-grid gap-2 d-md-block">
-                <a th:href="@{/Grupos/details/{id} (id = ${item.id}) }" class="btn btn-primary">Ver</a>
-                <a th:href="@{/Grupos/edit/{id} (id = ${item.id}) }" class="btn btn-secondary">Editar</a>
-                <a th:href="@{/Grupos/remove/{id} (id = ${item.id}) }" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/Docentes/details/{id} (id = ${item.id}) }" class="btn btn-primary">Ver</a>
+                <a th:href="@{/Docentes/edit/{id} (id = ${item.id}) }" class="btn btn-secondary">Editar</a>
+                <a th:href="@{/Docentes/remove/{id} (id = ${item.id}) }" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
         </tbody>
@@ -51,7 +57,7 @@
     <nav class="Page navegation example">
         <ul class="pagination">
             <li th:each="pageNumber : ${pageNumbers}">
-                <a class="page-link" th:href="@{|/Grupos?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+                <a class="page-link" th:href="@{|/Docentes?page=${pageNumber}|}" th:text="${pageNumber}"></a>
             </li>
         </ul>
     </nav>

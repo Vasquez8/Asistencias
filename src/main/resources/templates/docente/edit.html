@@ -1,0 +1,55 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <hr><h1>Editar docente</h1>
+    <form th:action="@{/Docentes/save}" th:object="${docente}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Escriba el nombre del grupo" th:field="*{nombre}" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="apellido">apellido</label>
+                    <input class="form-control" id="apellido" cols="12" rows="3" th:field="*{apellido}" required></input>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input class="form-control" id="email" cols="12" rows="3" th:field="*{email}" required></input>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="telefono">telefono</label>
+                    <input class="form-control" id="telefono" cols="12" rows="3" th:field="*{telefono}" required></input>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="escuela">escuela</label>
+                    <input class="form-control" id="escuela" cols="12" rows="3" th:field="*{escuela}" required></input>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a th:href="@{/Docentes}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
