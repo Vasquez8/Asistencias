@@ -1,0 +1,46 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Editar Docente Grupo</h1>
+        <form th:action="@{/DocenteGrupos/save}" th:object="${docenteGrupo}" method="post">
+            <!-- Hidden field to pass the ID of the DocenteGrupo -->
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="docente">Docente</label>
+                <select class="form-control" th:field="*{docente.id}" id="docente" required>
+                    <option value="" disabled>Seleccione un docente</option>
+                    <option th:each="docente : ${docentes}" th:value="${docente.id}" th:text="${docente.nombre}" th:selected="${docente.id == docenteGrupo.docente.id}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="grupo">Grupo</label>
+                <select class="form-control" th:field="*{grupo.id}" id="grupo" required>
+                    <option value="" disabled>Seleccione un grupo</option>
+                    <option th:each="grupo : ${grupos}" th:value="${grupo.id}" th:text="${grupo.nombre}" th:selected="${grupo.id == docenteGrupo.grupo.id}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="anio">Año</label>
+                <input type="number" class="form-control" th:field="*{anio}" id="anio" placeholder="Año" required />
+            </div>
+
+            <div class="form-group">
+                <label for="ciclo">Ciclo</label>
+                <input type="number" class="form-control" th:field="*{ciclo}" id="ciclo" placeholder="Ciclo" required />
+            </div>
+
+            <hr>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a th:href="@{/DocenteGrupos}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>

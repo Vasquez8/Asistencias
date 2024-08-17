@@ -1,0 +1,39 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Crear nuevo DocenteGrupo</h1>
+        <form th:action="@{/DocenteGrupos/save}" th:object="${docenteGrupo}" method="post">
+            <div class="form-group">
+                <label for="docente">Docente</label>
+                <select class="form-control" th:field="*{docente.id}" id="docente" required>
+                    <option value="" disabled selected>Seleccione un docente</option>
+                    <option th:each="docente : ${docentes}" th:value="${docente.id}" th:text="${docente.nombre}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="grupo">Grupo</label>
+                <select class="form-control" th:field="*{grupo.id}" id="grupo" required>
+                    <option value="" disabled selected>Seleccione un grupo</option>
+                    <option th:each="grupo : ${grupos}" th:value="${grupo.id}" th:text="${grupo.nombre}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="anio">Año</label>
+                <input type="number" class="form-control" th:field="*{anio}" id="anio" placeholder="Año" required />
+            </div>
+            <div class="form-group">
+                <label for="ciclo">Ciclo</label>
+                <input type="number" class="form-control" th:field="*{ciclo}" id="ciclo" placeholder="Ciclo" required />
+            </div>
+            <hr>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a th:href="@{/DocenteGrupos}" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>
