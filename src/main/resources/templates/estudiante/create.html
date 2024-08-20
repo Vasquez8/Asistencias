@@ -1,0 +1,31 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <h1 class="text-center">Crear Estudiante</h1>
+
+    <!-- Formulario para agregar un nuevo estudiante -->
+    <form th:action="@{/Estudiantes/save}" th:object="${estudiante}" method="post" class="mb-4">
+        <div class="form-group">
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control"
+                   placeholder="Ingrese su nombre completo" required />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" th:field="*{email}" class="form-control"
+                   placeholder="Ingrese su email" required />
+        </div>
+
+        <div class="form-group">
+            <label for="pin">PIN</label>
+            <input type="password" id="pin" th:field="*{pin}" class="form-control"
+                   placeholder="Ingrese su PIN" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/Estudiantes}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</html>

@@ -1,0 +1,45 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Detalles de Estudiante Grupo</h1>
+
+        <!-- Detalles del EstudianteGrupo -->
+        <div class="form-group">
+            <label for="estudiante">Estudiante</label>
+            <p id="estudiante">
+                <span th:text="${estudianteGrupo.estudiante.nombre}"></span>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="grupo">Grupo</label>
+            <p id="grupo">
+                <span th:text="${estudianteGrupo.grupo.nombre}"></span>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="anio">Año</label>
+            <p id="anio">
+                <span th:text="${estudianteGrupo.anio}"></span>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="ciclo">Ciclo</label>
+            <p id="ciclo">
+                <span th:text="${estudianteGrupo.ciclo}"></span>
+            </p>
+        </div>
+
+        <hr>
+        <div class="text-center">
+            <a th:href="@{/EstudianteGrupos/edit/{id}(id=${estudianteGrupo.id})}" class="btn btn-secondary">Editar</a>
+            <a th:href="@{/EstudianteGrupos}" class="btn btn-primary">Regresar</a>
+        </div>
+    </div>
+</div>
+
+</html>
