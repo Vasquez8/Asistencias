@@ -13,4 +13,6 @@ public interface IEstudianteServices {
     Optional<Estudiante> BuscarporId(Integer id);
     Estudiante CrearOEditar(Estudiante estudiante);
     void EliminarPorId(Integer id);
+
+    Estudiante BuscarPorEmailAndPin(String email, String pin);
 }

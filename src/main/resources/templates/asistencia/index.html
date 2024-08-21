@@ -1,0 +1,63 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <div th:if="${msg != null}">
+        <script>
+            Swal.fire({
+            title: "Confirmación",
+            text: '[[ ${msg} ]]',
+            icon: "success"
+            })
+        </script>
+    </div>
+
+    <div th:if="${error != null}">
+        <script>
+            Swal.fire({
+            title: "Error",
+            text: '[[ ${error} ]]',
+            icon: "error"
+            })
+        </script>
+    </div>
+    <h1 class="text-center">Listado de Asistencias</h1>
+
+    <a th:href="@{/Asistencias/create}" class="btn btn-primary my-3">Crear nueva asistencia</a>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Estudiante</th>
+            <th>Grupo</th>
+            <th>Fecha</th>
+            <th>Hora de Entrada</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${asistencias}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.estudiante.nombre}"></td> <!-- Asumiendo que `nombre` es un atributo de `Estudiante` -->
+            <td th:text="${item.grupo.nombre}"></td> <!-- Asumiendo que `nombre` es un atributo de `Grupo` -->
+            <td th:text="${item.fecha}"></td>
+            <td th:text="${item.horaEntrada}"></td>
+            <td class="d-grid gap-2 d-md-block">
+                <a th:href="@{/Asistencias/details/{id} (id = ${item.id}) }" class="btn btn-primary">Ver</a>
+                <a th:href="@{/Asistencias/edit/{id} (id = ${item.id}) }" class="btn btn-secondary">Editar</a>
+                <a th:href="@{/Asistencias/remove/{id} (id = ${item.id}) }" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav class="Page navegation example">
+        <ul class="pagination">
+            <li th:each="pageNumber : ${pageNumbers}">
+                <a class="page-link" th:href="@{|/Asistencias?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</html>

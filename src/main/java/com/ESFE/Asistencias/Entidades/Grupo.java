@@ -27,6 +27,10 @@ public class Grupo {
     @ManyToMany (mappedBy = "grupos")
     private Set<Estudiante> estudiantes = new HashSet<>();
 
+    @OneToMany(mappedBy = "grupo")
+    private Set<Asistencia> asistencias = new HashSet<>();
+
+
     /////////////////////Getter and setter///////////////////////
 
     public Integer getId() {

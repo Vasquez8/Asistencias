@@ -14,31 +14,36 @@ import java.util.Optional;
 @Service
 public class EstudianteServices implements IEstudianteServices {
     @Autowired
-    private IEstudianteRepositoy estudianteRepositoy;
+    private IEstudianteRepositoy estudianteRepository;
 
     @Override
     public Page<Estudiante> BuscarTodosPaginados(Pageable pageable)
     {
-        return estudianteRepositoy.findAll(pageable);
+        return estudianteRepository.findAll(pageable);
     }
 
     @Override
     public List<Estudiante> ObtenerTodos() {
-        return estudianteRepositoy.findAll();
+        return estudianteRepository.findAll();
     }
 
     @Override
     public Optional<Estudiante> BuscarporId(Integer id) {
-        return estudianteRepositoy.findById(id);
+        return estudianteRepository.findById(id);
     }
 
     @Override
     public Estudiante CrearOEditar(Estudiante estudiante) {
-        return estudianteRepositoy.save(estudiante);
+        return estudianteRepository.save(estudiante);
     }
 
     @Override
     public void EliminarPorId(Integer id) {
-        estudianteRepositoy.deleteById(id);
+        estudianteRepository.deleteById(id);
+    }
+
+    @Override
+    public Estudiante BuscarPorEmailAndPin(String email, String pin) {
+        return estudianteRepository.findByEmailAndPin(email, pin);
     }
 }
