@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -24,18 +25,15 @@ public class DatabaseWebSecurity {
                 "where u.login = ?");
         return users;
     }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests(authorize -> authorize
-        //apertura el exceso a los recursos estaticos
-                .requestMatchers("/dist/**", "plugins/**").permitAll()
-        //las vistas públicas no requieren autenticación
-                .requestMatchers("/", "/privacy", "/terms").permitAll()
-        //todas las demas vistas requieren autenticación
-                .anyRequest().authenticated());
-        http.formLogin(form ->form.permitAll());
-
-        return  http.build();
-    }
-;}
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+            .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers("/dist/", "/plugins/").permitAll()
+                    .requestMatchers("/", "/privacy", "/terms").permitAll()
+                    .anyRequest().authenticated()
+            )
+            .formLogin(form -> form.permitAll());
+    return http.build();
+}
+}

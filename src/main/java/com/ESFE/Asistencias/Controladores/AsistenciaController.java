@@ -5,6 +5,7 @@ import com.ESFE.Asistencias.Entidades.Estudiante;
 import com.ESFE.Asistencias.Entidades.Grupo;
 import com.ESFE.Asistencias.Servicios.Interfaces.IAsistenciaServices;
 import com.ESFE.Asistencias.Servicios.Interfaces.IEstudianteServices;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -51,12 +52,12 @@ public class AsistenciaController {
         return "asistencia/index";
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public String loginAsistencia(@RequestParam("email") String email, @RequestParam("pin") String pin) {
         // Autenticar estudiante
         Estudiante estudiante = estudianteServices.BuscarPorEmailAndPin(email, pin);
         if (estudiante != null) {
-            // Registrar asistencia al que pertenece el estudiante
+            // Registrar asistencia para todos los grupos del estudiante
             for (Grupo grupo : estudiante.getGrupos()) {
                 Asistencia asistencia = new Asistencia();
                 asistencia.setEstudiante(estudiante);
@@ -70,5 +71,16 @@ public class AsistenciaController {
         } else {
             return "redirect:/Asistencias/login?error=true";
         }
+    }
+
+    @GetMapping("/login")
+    public String loginPage(Model model) {
+        return "login"; // Retorna la vista del formulario de login
+    }
+
+    @PostMapping("/perform_login")
+    public String performLogin(HttpServletRequest request) {
+        // Redirige a la página de inicio u otra página después del login
+        return "redirect:/home";
     }
 }
